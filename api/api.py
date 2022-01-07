@@ -1,22 +1,30 @@
-from flask import Flask
-from pprint import pprint
 import googlemaps
 import numpy as np
+from flask import Flask, request
+
+app = Flask(__name__)
+
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # Global Variables
 # API key IP Address Restricted - Safe to show
 API_key = 'AIzaSyDaTIF0t-wQ_WLUb920Gfq4lAS_8wXt2nw'
-gmaps = googlemaps.Client(key=API_key)  # Initialize Google Maps API
-app = Flask(__name__)
+gmaps = googlemaps.Client(key=API_key)
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+@app.route('/', methods=["POST", "GET"])
+def forms():
+    if request.method == "POST":
+        start_loc = request.form['starting_location']
+        end_loc = request.form['ending_location']
 
-# Members API Route
-@app.route("/api")
+    print(start_loc, end_loc)
+    maps(start_loc, end_loc)
+
+    return start_loc, end_loc
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 def plotMaps(latitude, longitude, tourist_latitude, tourist_longitude, tourist_waypoints, names):
     import gmplot
-    API_key = 'AIzaSyDaTIF0t-wQ_WLUb920Gfq4lAS_8wXt2nw'
-    gmaps = googlemaps.Client(key=API_key)  # Initialize Google Maps API
-    
+    print('plotting maps')
+
     lat_mean = np.mean(latitude)
     long_mean = np.mean(longitude)
     
@@ -36,9 +44,12 @@ def plotMaps(latitude, longitude, tourist_latitude, tourist_longitude, tourist_w
     for i in range(len(names)):
         gmap.text(tourist_waypoints[i][0], tourist_waypoints[i][1], names[i])
     gmap.enable_marker_dropping('orange', draggable=True)
-    gmap.draw("map.html")
+    gmap.draw('../client/public/map.html')
+
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 def parseRoute(route):
+    print('parsing route')
+
     lats = [route[0]['legs'][0]['start_location']['lat']]
     lngs = [route[0]['legs'][0]['start_location']['lng']]
     for leg in route[0]["legs"]:
@@ -52,6 +63,7 @@ def parseRoute(route):
     return lats, lngs
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 def bestPlace(places):
+    print('determining best place')
     results = dict()
 
     entry = 0
@@ -70,24 +82,8 @@ def bestPlace(places):
 
     return bestPlace
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-def main():
-    """
-        Google API approved for Project 
-        #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-        Directions API
-        Distance Matrix API
-        Geocoding API
-        Maps Static API
-        Places API
-    """
-
-    # Obtain start and end points
-    API_key = 'AIzaSyDaTIF0t-wQ_WLUb920Gfq4lAS_8wXt2nw'
-    gmaps = googlemaps.Client(key=API_key)  # Initialize Google Maps API
-    start_loc = 'Lapeer, MI'
-    end_loc = 'Madison, WI'
-    
-    # Create a route between the start and end point
+def maps(start_loc, end_loc):
+    print('running maps main function')
     directions = gmaps.directions(start_loc, end_loc,
                mode=None, waypoints=None, alternatives=False, avoid=None,
                language=None, units=None, region=None, departure_time=None,
@@ -121,12 +117,7 @@ def main():
                transit_routing_preference=None, traffic_model=None)
     # Take data from directions and update map
     tour_lats, tour_lngs = parseRoute(tourist_route)
-    
     plotMaps(lats, lngs, tour_lats, tour_lngs, way_points, tourist_names)
-    
-    dat = {"members":['mb1', 'mb2', 'mb3', 'mb4']}
-
-    return dat
-    
-if __name__ == "__main__":
-    app.run(debug=True)
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+if __name__ == '__main__':
+    app.run(debug = True)

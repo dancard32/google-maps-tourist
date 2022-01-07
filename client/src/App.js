@@ -5,45 +5,42 @@ import './App.css';
 
 function App() {
 
-  const [data, setData] = useState([{}])
-  
-  useEffect(() => {
-    fetch("/api").then(
-      res => res.json()
-    ).then(
-      data => {
-        setData(data)
-        console.log(data)
-      }
-    )
-  }, [])
+ 
 
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <p>Google Maps - Tourist Routes</p>
       </header>
 
-      <div>
-        {(typeof data.members === 'undefined') ? (
-            <p>Loading...</p>
-        ) :(
-          data.members.map((member, i) => (
-            <p key={i}>{member}</p>
-          ))
-        )}
+      <div className='form'>
+        <form action='/' method='post'>
+          <div>
+            <label>Starting Location:</label>
+            <input type='text' name='starting_location' required/>
+          </div>
+    
+          <div>
+            <label>Ending Location:</label>
+            <input type='text' name='ending_location' required/>
+          </div>
+
+          <br/>
+          <input type='submit'/>
+        </form>
       </div>
+
+      
+      <iframe src="../map.html" width="75%" height="500vh" allowFullScreen="" loading="lazy"></iframe>
+
+      <br/>
+      <div>
+        <a>Made with ❤️ by Dan</a>
+        <br></br>
+        <a href='https://github.com/dancard32' target="_blank" rel="noopener noreferrer">
+        Check me out on github!</a>
+      </div>
+      
     </div>
   );
 }

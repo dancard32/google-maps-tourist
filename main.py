@@ -1,10 +1,11 @@
 from datetime import datetime
 from pprint import pprint
+from typing import final
 import googlemaps
 import numpy as np
 import requests
 import json
-
+import re
 
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -81,7 +82,7 @@ def main():
     """
 
     # Obtain start and end points
-    start_loc = 'Madison, WI'
+    start_loc = '101 N Main St. Clearfield, UT'
     end_loc = 'Denver'
     
     # Create a route between the start and end point
@@ -118,7 +119,6 @@ def main():
                transit_routing_preference=None, traffic_model=None)
     # Take data from directions and update map
     tour_lats, tour_lngs = parseRoute(tourist_route)
-    
     plotMaps(lats, lngs, tour_lats, tour_lngs, way_points, tourist_names)
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 if __name__ == "__main__":
