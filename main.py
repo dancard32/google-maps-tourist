@@ -82,8 +82,8 @@ def main():
     """
 
     # Obtain start and end points
-    start_loc = '101 N Main St. Clearfield, UT'
-    end_loc = 'Denver'
+    start_loc = 'University of Southern California'
+    end_loc = 'Griffith Observatory'
     
     # Create a route between the start and end point
     directions = gmaps.directions(start_loc, end_loc,
