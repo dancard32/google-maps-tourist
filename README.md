@@ -1,5 +1,5 @@
 # google-maps-tourist
-![badmath](https://img.shields.io/github/languages/top/nielsenjared/badmath)
+
 ## Description
 This project is intended to expand an option on the google maps "Directions" functionality to provide a more sight-seeing experience for integration on road trips for a more immersive UX. This project was written in Python, and I am currently working to expand it to a static *github.io pages* website with a Flask back-end React front-end. 
 ## Table of Contents
@@ -22,9 +22,16 @@ pip install gmplot
 
 
 ## Usage
-Provide instructions and examples for use. Include screenshots as needed.
-To add a screenshot, create an `assets/images` folder in your repository and upload your screenshot to it. Then, using the relative filepath, add it to your README using the following syntax:
+### API Key
+I've IP restricted this API key to my personal computer, so if you would like to run this on your own local machine, *git clone* this repository and create a Google Cloud Platform project. This will be the project needed to get the api key. The Google Maps APIs you will need are:
+* Directions API
+* Geocoding API
+* Maps JavaScript API
+* Maps Static API
+* Places API
 
+After obtaining the API key replace the placeholder API key in *main.py*
+### Checking Tourist Routes
 If this is being ran locally, the results will be exported to *(root)/map.html*. To allow automatic refreshing use [Live-Server](https://github.com/ritwickdey/vscode-live-server) to open the *map.html* on a localhost that automatically updates every time the *main.py* is ran.
 ![Live Server](assets/liveServer.png)
 
@@ -35,7 +42,5 @@ If this is being ran locally, the results will be exported to *(root)/map.html*.
 
 ---
 ## License
-The last section of a high-quality README file is the license. This lets other developers know what they can and cannot do with your project. If you need help choosing a license, refer to [https://choosealicense.com/](https://choosealicense.com/).
+Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0) prohibits the use of this for commercialization, but allows downloading editing/sharing amongst the community. If there is a request to commercialize, contact me personally via email at [dcard@umich.edu](mailto:dcard@umich.edu)
 
-## How to Contribute
-If you created an application or package and would like other developers to contribute it, you can include guidelines for how to do so. The [Contributor Covenant](https://www.contributor-covenant.org/) is an industry standard, but you can always write your own if you'd prefer.
