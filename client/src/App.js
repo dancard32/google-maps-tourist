@@ -5,8 +5,6 @@ import './App.css';
 
 function App() {
 
- 
-
   return (
     <div className="App">
       <header className="App-header">
@@ -31,7 +29,7 @@ function App() {
       </div>
 
       
-      <iframe src="../map.html" width="75%" height="500vh" allowFullScreen="" loading="lazy"></iframe>
+      <iframe id="Google-Map" src={"./map.html"} width="75%" height="500vh" allowFullScreen="" loading="lazy"></iframe>
 
       <br/>
       <div>
