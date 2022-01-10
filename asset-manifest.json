@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/dancard32/google-maps-tourist/static/css/main.5b141134.css",
-    "main.js": "/dancard32/google-maps-tourist/static/js/main.29cae7ab.js",
-    "static/js/787.070db070.chunk.js": "/dancard32/google-maps-tourist/static/js/787.070db070.chunk.js",
-    "static/media/logo.svg": "/dancard32/google-maps-tourist/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
-    "index.html": "/dancard32/google-maps-tourist/index.html",
-    "main.5b141134.css.map": "/dancard32/google-maps-tourist/static/css/main.5b141134.css.map",
-    "main.29cae7ab.js.map": "/dancard32/google-maps-tourist/static/js/main.29cae7ab.js.map",
-    "787.070db070.chunk.js.map": "/dancard32/google-maps-tourist/static/js/787.070db070.chunk.js.map"
+    "main.css": "/static/css/main.5b141134.css",
+    "main.js": "/static/js/main.677ddde7.js",
+    "static/js/787.070db070.chunk.js": "/static/js/787.070db070.chunk.js",
+    "static/media/logo.svg": "/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
+    "index.html": "/index.html",
+    "main.5b141134.css.map": "/static/css/main.5b141134.css.map",
+    "main.677ddde7.js.map": "/static/js/main.677ddde7.js.map",
+    "787.070db070.chunk.js.map": "/static/js/787.070db070.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.5b141134.css",
-    "static/js/main.29cae7ab.js"
+    "static/js/main.677ddde7.js"
   ]
 }
